@@ -5,9 +5,12 @@ export const readPost = (post) => ({
   payload: post,
 });
 
-export const addPost = (post) => ({
+export const addPost = (post, title) => ({
   type: actions.ADD_POST,
-  payload: post,
+  payload: {
+    post,
+    title,
+  },
 });
 
 export const removePost = (post) => ({

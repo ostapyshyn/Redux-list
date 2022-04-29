@@ -2,7 +2,7 @@ import * as types from './actionTypes';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
-  posts: [{ id: 1, post: 'Test Post 123', completed: false }],
+  posts: [{ id: 1, title: 'title', post: 'Test Post 123', completed: false }],
 };
 
 const postsReducer = (state = initialState, action) => {
@@ -27,7 +27,8 @@ const postsReducer = (state = initialState, action) => {
     case types.ADD_POST:
       const newPost = {
         id: uuidv4(),
-        post: action.payload,
+        title: action.payload.title,
+        post: action.payload.post,
         completed: false,
       };
       const addedPosts = [...state.posts, newPost];

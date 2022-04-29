@@ -5,15 +5,29 @@ import TextField from '@mui/material/TextField';
 
 const PostInput = ({ createPost }) => {
   const [post, setPost] = useState('');
+  const [title, setTitle] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost(post);
+    createPost(post, title);
     setPost('');
+    setTitle('');
   };
   const isTextInput = post.length === 0;
   return (
     <form onSubmit={handleSubmit}>
+      <TextField
+        size='small'
+        id='outlined-basic'
+        label='Title'
+        variant='outlined'
+        name='title'
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        sx={{
+          margin: 1,
+        }}
+      />
       <TextField
         size='small'
         id='outlined-basic'

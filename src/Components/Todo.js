@@ -6,7 +6,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
-const Todo = ({ toggleTodo, task, completed, id, removePost, updatePost }) => {
+const Todo = ({ toggleTodo, task, title, completed, id, removePost, updatePost }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editPost, setEditPost] = useState(task);
 
@@ -42,10 +42,9 @@ const Todo = ({ toggleTodo, task, completed, id, removePost, updatePost }) => {
           </Button>
         </form>
       ) : (
-        // <li onClick={toggleTodo}>{task}</li>
         <List>
           <ListItem>
-            <ListItemText onClick={toggleTodo} primary={task} />
+            <ListItemText onClick={toggleTodo} primary={`${title}: ${task}`} />
           </ListItem>
         </List>
       )}

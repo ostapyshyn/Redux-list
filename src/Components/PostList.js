@@ -16,8 +16,8 @@ const PostList = () => {
   const state = useSelector((state) => ({ ...state.posts }));
   let dispatch = useDispatch();
 
-  const create = (newPost) => {
-    dispatch(addPost(newPost));
+  const create = (newPost, title) => {
+    dispatch(addPost(newPost, title));
   };
 
   const update = (id, updatedPost) => {
@@ -25,31 +25,30 @@ const PostList = () => {
   };
   let color = theme ? 'lightgray' : 'background.default';
   return (
-    <Container maxWidth='sm'>
+    <Container maxWidth='md'>
       <Box bgcolor={color} color={'text.primary'}>
         <Typography variant='h3' component='div' align='center' gutterBottom>
           List of posts using Redux
         </Typography>
         Color theme: <Switch onChange={(e) => setTheme(theme ? false : true)} />
         <PostInput createPost={create} />
-        <ul>
-          <div>
-            {state.posts &&
-              state.posts.map((post) => {
-                return (
-                  <Todo
-                    key={post.id}
-                    id={post.id}
-                    task={post.post}
-                    completed={post.completed}
-                    toggleTodo={() => dispatch(readPost(post))}
-                    removePost={() => dispatch(removePost(post))}
-                    updatePost={update}
-                  />
-                );
-              })}
-          </div>
-        </ul>
+        <div>
+          {state.posts &&
+            state.posts.map((post) => {
+              return (
+                <Todo
+                  key={post.id}
+                  id={post.id}
+                  task={post.post}
+                  title={post.title}
+                  completed={post.completed}
+                  toggleTodo={() => dispatch(readPost(post))}
+                  removePost={() => dispatch(removePost(post))}
+                  updatePost={update}
+                />
+              );
+            })}
+        </div>
       </Box>
     </Container>
   );
