@@ -11,7 +11,7 @@ const PostInput = ({ createPost }) => {
     createPost(post);
     setPost('');
   };
-
+  const isTextInput = post.length === 0;
   return (
     <form onSubmit={handleSubmit}>
       <TextField
@@ -27,6 +27,7 @@ const PostInput = ({ createPost }) => {
         }}
       />
       <Button
+        disabled={isTextInput}
         type='submit'
         variant='outlined'
         color='success'

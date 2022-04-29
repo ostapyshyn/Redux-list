@@ -31,27 +31,26 @@ const PostList = () => {
           List of posts using Redux
         </Typography>
         Color theme: <Switch onChange={(e) => setTheme(theme ? false : true)} />
+        <PostInput createPost={create} />
+        <ul>
+          <div>
+            {state.posts &&
+              state.posts.map((post) => {
+                return (
+                  <Todo
+                    key={post.id}
+                    id={post.id}
+                    task={post.post}
+                    completed={post.completed}
+                    toggleTodo={() => dispatch(readPost(post))}
+                    removePost={() => dispatch(removePost(post))}
+                    updatePost={update}
+                  />
+                );
+              })}
+          </div>
+        </ul>
       </Box>
-
-      <PostInput createPost={create} />
-      <ul>
-        <div>
-          {state.posts &&
-            state.posts.map((post) => {
-              return (
-                <Todo
-                  key={post.id}
-                  id={post.id}
-                  task={post.post}
-                  completed={post.completed}
-                  toggleTodo={() => dispatch(readPost(post))}
-                  removePost={() => dispatch(removePost(post))}
-                  updatePost={update}
-                />
-              );
-            })}
-        </div>
-      </ul>
     </Container>
   );
 };
