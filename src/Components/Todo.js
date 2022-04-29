@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
 const Todo = ({ toggleTodo, task, completed, id, removePost, updatePost }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -39,7 +42,12 @@ const Todo = ({ toggleTodo, task, completed, id, removePost, updatePost }) => {
           </Button>
         </form>
       ) : (
-        <li onClick={toggleTodo}>{task}</li>
+        // <li onClick={toggleTodo}>{task}</li>
+        <List>
+          <ListItem>
+            <ListItemText onClick={toggleTodo} primary={task} />
+          </ListItem>
+        </List>
       )}
 
       <Button
